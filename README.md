@@ -9,3 +9,13 @@ Getting Started
 1. Clone the Repository
 2. From the command line run: *npm install && bower install*
 3. Open index.html in your browser of choice
+
+Building
+-
+
+From the command line run: *grunt*
+
+Testing
+-
+
+From the command line run: *grunt jasmine*
