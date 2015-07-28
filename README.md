@@ -8,7 +8,7 @@ Requirements and Dependencies
 
 This project requires [jQuery](http://jquery.com), [Bootstrap](http://getbootstrap.com/) to work out of the box. In order to use the color component you must have [Very simple jQuery color picker](https://github.com/tkrotoff/jquery-simplecolorpicker).
 
-For development [Grunt](https://gruntjs.com) and [Bower](https://bower.io) will make things much easier.
+For development [Grunt](http://gruntjs.com) and [Bower](http://bower.io) will make things much easier.
 
 Getting Started
 -
