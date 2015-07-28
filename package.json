@@ -1,0 +1,14 @@
+{
+  "name": "FormDialog",
+  "version": "0.1.0",
+  "description": "Create a form inside a bootstrap modal and return the form data as JSON",
+  "devDependencies": {
+    "grunt": "~0.4",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jasmine": "~0.9.0"
+  },
+  "repository": {
+    "type":"git",
+    "url": ""
+  }
+}

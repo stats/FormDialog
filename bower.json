@@ -1,0 +1,30 @@
+{
+  "name": "FormDialog",
+  "version": "0.1.0",
+  "description": "Create a form inside a bootstrap modal and return the form data as JSON",
+  "main": [
+    "scripts/Dialog.js",
+    "scripts/types/Checkbox.js",
+    "scripts/types/Color.js",
+    "scripts/types/Number.js",
+    "scripts/types/Select.js",
+    "scripts/types/Text.js"
+  ],
+  "dependencies": {
+    "jquery-simplecolorpicker": ">=0.3.0",
+    "jquery": ">=2.1.4"
+  },
+  "authors": [
+    "Dan Curran <dan@incidentsmart.com>"
+  ],
+  "licence": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "dist",
+    "specs",
+    "index.html",
+    "_SpecRunner.html"
+  ]
+}

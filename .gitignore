@@ -1,0 +1,11 @@
+.grunt
+bower_components
+node_modules
+_SpecRunner.html
+
+.DS_Store
+.DS_Store?
+._*
+.Trashes
+ehtumbs.db
+Thumbs.db
