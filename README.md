@@ -14,12 +14,17 @@ This project requires [jQuery](http://jquery.com), [Bootstrap](http://getbootstr
 
 For development [Grunt](http://gruntjs.com) and [Bower](http://bower.io) will make things much easier.
 
-Getting Started
+Using the project
+-
+
+To use this project simply download the **Raw** version of FormDialog from the **dist** folder. There is both a minified version and the full version available to download.
+
+For Development
 -
 
 1. Clone the Repository
 2. From the command line run: *npm install && bower install*
-3. Open index.html in your browser of choice
+3. Start editing code
 
 Building
 -
