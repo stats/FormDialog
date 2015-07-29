@@ -3,91 +3,90 @@ var FormDialog = {};
 
   FormDialog = function(config) {
     if( !config ) {
-      this.config = {};
+      this._config = {};
     } else {
-      this.config = config
+      this._config = config
     }
-    this.dialog = null;
+    this._dialog = null;
 
-    this.title = null;
-    this.fields = null;
-    this.accept_label = null;
+    this._title = null;
+    this._fields = null;
+    this._accept_label = null;
 
-    this.dialogs = {};
-    this.field_types = {};
-    this.setup();
+    this._dialogs = {};
+    this._field_types = {};
+    this._setup();
   }
 
   FormDialog.prototype = {
-    setup: function() {
-      if(!this.config.hasOwnProperty('disableDefaults') || this.config['disableDefaults'] === false ){
-        this.registerDefaultTypes();
+    _setup: function() {
+      if(!this._config.hasOwnProperty('disableDefaults') || this._config['disableDefaults'] === false ){
+        this._registerDefaultTypes();
       }
-      this.dialog = this._createDialog();
+      this._dialog = this._createDialog();
     },
-    registerDefaultTypes: function(){
+    registerType: function(type) {
+      this._field_types[type.id] = type;
+    },
+    registerDialog: function(type, options) {
+      if(this._dialogs.hasOwnProperty(type) && this._dialogs[type] != null) {
+        this._dialogs[type].remove();
+      }
+      this._dialogs[type] = options;for 
+    },
+    unregisterDialog: function(type) {
+      if( ! this._dialogs.hasOwnProperty(type) ){
+        return false;
+      }
+
+      this._dialogs[type] = null;
+      delete this._dialogs[type];
+      return true;
+    },
+    show: function(type) {
+      if( !this._dialogs.hasOwnProperty(type) || this._dialogs[type] == null){
+        return false;
+      }
+
+      this._updateDialog(this._dialogs[type]);
+
+      var self = this;
+      this._accept_label.off('click tap');
+      this._accept_label.on('click tap', function() {
+        $(document).trigger('formdialog:' + type + ':submit', [self.serializeForm()]);
+        self.hide(type);
+      });
+      this._dialog.modal('show');
+      return true;
+    },
+    hide: function(type) {
+      if( !this._dialogs.hasOwnProperty(type)  || this._dialogs[type] == null){
+        return false;
+      }
+      this._dialog.modal('hide');
+      return true;
+    },
+    serializeForm: function(type) {
+      return this._dialog.find('form').serializeArray();
+    },
+    _registerDefaultTypes: function(){
       this.registerType(FormDialog.Select);
       this.registerType(FormDialog.Text);
       this.registerType(FormDialog.Color);
       this.registerType(FormDialog.Number);
       this.registerType(FormDialog.Checkbox);
     },
-    registerType: function(type) {
-      this.field_types[type.id] = type;
-    },
-    registerDialog: function(type, options) {
-      if(this.dialogs.hasOwnProperty(type) && this.dialogs[type] != null) {
-        this.dialogs[type].remove();
-      }
-      this.dialogs[type] = options;
-    },
-    unregisterDialog: function(type) {
-      if( ! this.dialogs.hasOwnProperty(type) ){
-        return false;
-      }
-      this.dialogs[type].remove();
-      this.dialogs[type] = null;
-
-      return true;
-    },
-    show: function(type) {
-      if( !this.dialogs.hasOwnProperty(type) || this.dialogs[type] == null){
-        return false;
-      }
-
-      this.updateDialog(this.dialogs[type]);
-
-      var self = this;
-      this.accept.off('click tap');
-      this.accept.on('click tap', function() {
-        $(document).trigger('formdialog:' + type + ':submit', [self.serializeForm()]);
-        self.hide(type);
-      });
-
-      this.dialog.modal('show');
-      return true;
-    },
-    hide: function(type) {
-      if( !this.dialogs.hasOwnProperty(type)  || this.dialogs[type] == null){
-        return false;
-      }
-      this.dialog.modal('hide');
-      return true;
-    },
-    serializeForm: function(type) {
-      return this.dialog.find('form').serializeArray();
-    },
-    updateDialog: function(options) {
-      this.fields.html('');
+    _updateDialog: function(options) {
+      this._fields.html('');
       var opts;
       for(var i = 0, len = options.fields.length; i < len; i++) {
         opts = options.fields[i];
-        if(!this.field_types.hasOwnProperty(opts.type) ){
+        if(!this._field_types.hasOwnProperty(opts.type) ){
           throw new Error("The data type [" + opts.type + "] has not been registered.")
         }
-        this.fields.append(this.field_types[opts.type].fieldFactory(opts));
-        this.title.html(options.dialog_title);
-        this.accept.html(options.submit_label);
+        this._fields.append(this._field_types[opts.type].fieldFactory(opts));
+        this._title.html(options.dialog_title);
+        this._accept_label.html(options.submit_label);
 
       }
     },
@@ -96,19 +95,19 @@ var FormDialog = {};
       var dialog = $('<div class="modal-dialog"></div>');
       var content = $('<div class="modal-content"></div>');
       var header = $('<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-      this.title = $('<h4 class="modal-title"></h4>');
+      this._title = $('<h4 class="modal-title"></h4>');
       var body = $('<div class="modal-body"></div>');
       var footer = $('<div class="modal-footer"></div>');
 
-      this.accept = $('<button type="button" class="btn btn-primary"></button>');
+      this._accept_label = $('<button type="button" class="btn btn-primary"></button>');
       var close = $('<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>');
 
-      footer.append(this.accept);
+      footer.append(this._accept_label);
       footer.append(close);
 
-      this.fields = $('<form class="field"></form>');
-      body.append(this.fields);
-      header.append(this.title);
+      this._fields = $('<form class="field"></form>');
+      body.append(this._fields);
+      header.append(this._title);
 
       content.append(header);
       content.append(body);
