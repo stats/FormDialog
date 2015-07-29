@@ -1,7 +1,11 @@
 FormDialog
 =
 
-This is a JavaScript project that assists in creating forms inside a twitter bootstrap modal.
+A JavaScript project that assists in creating forms inside a bootstrap modal dialog.
+
+Demo Site
+-
+Visit [our demo site](https://stats.github.io/FormDialog) to see this project in action.
 
 Requirements and Dependencies
 -
