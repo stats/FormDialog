@@ -32,7 +32,7 @@ var FormDialog = {};
       if(this._dialogs.hasOwnProperty(type) && this._dialogs[type] != null) {
         this._dialogs[type].remove();
       }
-      this._dialogs[type] = options;for 
+      this._dialogs[type] = options; 
     },
     unregisterDialog: function(type) {
       if( ! this._dialogs.hasOwnProperty(type) ){
