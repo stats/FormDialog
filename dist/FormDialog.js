@@ -32,7 +32,7 @@ var FormDialog = {};
       if(this._dialogs.hasOwnProperty(type) && this._dialogs[type] != null) {
         this._dialogs[type].remove();
       }
-      this._dialogs[type] = options; 
+      this._dialogs[type] = options;
     },
     unregisterDialog: function(type) {
       if( ! this._dialogs.hasOwnProperty(type) ){
@@ -75,6 +75,7 @@ var FormDialog = {};
       this.registerType(FormDialog.Color);
       this.registerType(FormDialog.Number);
       this.registerType(FormDialog.Checkbox);
+      this.registerType(FormDialog.Email);
     },
     _updateDialog: function(options) {
       this._fields.html('');
@@ -159,12 +160,33 @@ var FormDialog = {};
 
 (function($) {
 
+  FormDialog.Email = {
+    id: 'email',
+    fieldFactory: function(options) {
+      var group = $('<div class="form-group"></div>');
+      group.append($('<label for="' + options.name + '">' + options.label + '</label>'));
+      var field = $('<input type="email" class="form-control" name="' + options.name + '"/>');
+      if(options.hasOwnProperty('placeholder')) {
+        field.attr('placeholder', options.placeholder);
+      }
+      group.append(field);
+      return group;
+    }
+  }
+
+})(jQuery);
+
+(function($) {
+
   FormDialog.Number = {
     id: 'number',
     fieldFactory: function(options) {
       var group = $('<div class="form-group"></div>');
       group.append($('<label for="' + options.name + '">' + options.label + '</label>'));
       var field = $('<input type="number" class="form-control" name="' + options.name + '"/>');
+      if(options.hasOwnProperty('placeholder')) {
+        field.attr('placeholder', options.placeholder);
+      }
       group.append(field);
       return group;
     }
@@ -198,6 +220,9 @@ var FormDialog = {};
       var group = $('<div class="form-group"></div>');
       group.append($('<label for="' + options.name + '">' + options.label + '</label>'));
       var field = $('<input type="text" class="form-control" name="' + options.name + '"/>');
+      if(options.hasOwnProperty('placeholder')) {
+        field.attr('placeholder', options.placeholder);
+      }
       group.append(field);
       return group;
     }
