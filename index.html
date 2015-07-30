@@ -340,13 +340,37 @@
         });
 
         formDialog.registerDialog('ComplexExample2', {
-          fields: [{
-            label: 'True?',
-            name: 'checkbox',
-            type: 'checkbox'
-          }],
-          dialog_title: 'Is it true?',
-          submit_label: 'True?'
+          fields: [
+            {
+              label: 'Name',
+              placeholder: 'Enter Your Name',
+              name: 'name',
+              type: 'text'
+            },
+            {
+              label: 'Email',
+              placeholder: 'Enter Email Address',
+              name: 'email',
+              type: 'email'
+            },
+            {
+              label: 'Address',
+              name: 'address',
+              type: 'text'
+            },
+            {
+              label: 'Address 2',
+              name: 'address2',
+              type: 'text'
+            },
+            {
+              label: 'City',
+              name: 'city',
+              type: 'text'
+            }
+          ],
+          dialog_title: 'Sign Up',
+          submit_label: 'Sign Up'
         });
 
         $('#complex_example_2').on('click tap', function() {
