@@ -5,10 +5,6 @@ describe("Dialog Tests", function() {
     expect(dialog.show('example')).toBe(false);
   });
 
-  it("Expects hiding a dialog to fail", function(){
-    expect(dialog.hide('example')).toBe(false);
-  });
-
   it("Expects serializing the form to be empty", function() {
     expect(dialog.serializeForm().length).toEqual(0);
   });
